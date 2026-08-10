@@ -1,2 +1,51 @@
-# buckshot-roulette-calculator
-That's just a small probability calculator for buckshot roulette
+# 💥 Buckshot Roulette Probability Calculator 🧨
+
+*Read this in [German / Deutsch](#-deutsche-version)*
+
+A smart, mobile-friendly probability calculator and tactical assistant for the game **Buckshot Roulette**. Stop guessing and start winning with math, chain-reaction logic, and real-time RNG tracking.
+
+### 🌐 Live Demo
+* **English Version:** [Click here to play](https://sambaweb.github.io/buckshot-roulette-calculator/)
+* **German Version:** [Klick hier zum Spielen](https://sambaweb.github.io/buckshot-roulette-calculator/index_de.html)
+
+### ✨ Features
+* **Dynamic Probabilities:** Real-time percentage calculation for the next shot (Live / Blänk).
+* **Smart Item Recommendations:** It doesn't just calculate odds; it tells you exactly *when* to use Handcuffs, Saws, Magnifying Glasses, and when to hold them back based on chain-reaction logic.
+* **Law of Large Numbers (LLN) Tracker:** Tracks global RNG trends across all your rounds to see if the game favors live or blank shells.
+* **Mobile-First Design:** Fully optimized for smartphones. No zooming, no accidental scrolling—it feels like a native app.
+* **Inverter Support:** Accurately recalculates the remaining shell pool when you invert a known shell.
+
+### 🚀 How to Use
+1. Enter the starting shells (Live/Blänk) and health points.
+2. If you use a Magnifying Glass/Phone, click the corresponding shell circle to set it to **Red (Live)** or **Green (Blänk)**.
+3. Follow the smart advice to shoot the dealer or yourself!
+4. Click the action buttons to log the result or use items.
+
+### 🛠️ Credits / Behind the Scenes
+Concept, deep chain-reaction logic, and tactical game strategy designed by Sambaweb (me). Code generation, UI implementation, and pair-programming in collaboration with Google Gemini.
+
+---
+
+# 🇩🇪 Deutsche Version
+
+Ein smarter, für Handys optimierter Probabilitätsrechner und Taktik-Assistent für das Spiel **Buckshot Roulette**. Schluss mit Raten – gewinne durch reine Mathematik, Ketteneffekt-Logik und Echtzeit-RNG-Tracking.
+
+### 🌐 Live Demo
+* **Englische Version:** [Hier klicken](https://sambaweb.github.io/buckshot-roulette-calculator/)
+* **Deutsche Version:** [Hier klicken](https://sambaweb.github.io/buckshot-roulette-calculator/index_de.html)
+
+### ✨ Features
+* **Dynamische Wahrscheinlichkeiten:** Echtzeit-Prozentrechnung für den nächsten Schuss (Scharf / Plätzer).
+* **Smarte Item-Tipps:** Das Tool rechnet nicht nur, es sagt dir genau, *wann* du Handschellen, Messer oder Lupe nutzen solltest und wann du sie besser für fiese Ketteneffekte aufhebst.
+* **Gesetz der großen Zahl (LLN):** Trackt die globale RNG-Tendenz über all deine Runden hinweg.
+* **Mobile-First Design:** Komplett für Smartphones optimiert. Kein lästiges Zoomen, kein Verrutschen – fühlt sich an wie eine native App.
+* **Inverter-Logik:** Berechnet den restlichen Patronen-Pool absolut fehlerfrei neu, wenn du eine bekannte Patrone invertierst.
+
+### 🚀 Bedienung
+1. Trage die Start-Patronen (Scharf/Plätzer) und die Lebenspunkte ein.
+2. Wenn du eine Lupe oder ein Handy nutzt, klicke auf den entsprechenden Kreis, um ihn auf **Rot (Scharf)** oder **Grün (Plätzer)** zu setzen.
+3. Folge der smarten Taktik-Empfehlung.
+4. Nutze die Action-Buttons, um das Ergebnis einzutragen oder Items zu nutzen.
+
+### 🛠️ Credits / Behind the Scenes
+Konzept, tiefgreifende Ketteneffekt-Logik und Taktik-Design (sowie der legendäre "Blänk"-Gag) von Sambaweb. Code-Generierung, UI-Design und Pair-Programming in Zusammenarbeit mit Google Gemini.

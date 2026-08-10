@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Buckshot Roulette Probabilitätsrechner</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --accent-red: #cf6679;
+            --accent-green: #03dac6;
+            --accent-blue: #64b5f6;
+            --accent-yellow: #fdd835;
+            --text-main: #e0e0e0;
+            --text-muted: #888888;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overscroll-behavior-y: none;
+            background-image: linear-gradient(rgba(18, 18, 18, 0.92), rgba(18, 18, 18, 0.92)), 
+                              url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="10" y="50" font-size="40" opacity="0.05">💥</text><text x="60" y="80" font-size="40" opacity="0.05">🧨</text></svg>');
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            background-color: var(--card-bg);
+            border: 2px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+            box-sizing: border-box;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.3rem;
+            margin-top: 0;
+            color: var(--accent-red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #2c2c2c;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .input-box {
+            flex: 1 1 30%;
+            min-width: 100px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            background-color: #2b2b2b;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+            touch-action: manipulation;
+        }
+
+        button:hover { background-color: #444; }
+
+        button.primary {
+            background-color: #bb86fc;
+            color: #000;
+            width: 100%;
+            margin-top: 5px;
+            font-size: 1.05rem;
+            padding: 12px;
+        }
+
+        button.primary:hover { background-color: #9965f4; }
+
+        .btn-hard-reset {
+            background-color: #b71c1c;
+            border: 1px solid #c62828;
+            color: white;
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+
+        .health-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .health-box {
+            background-color: #252525;
+            border: 2px solid #444;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .health-title {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .health-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .health-btn {
+            background-color: #333;
+            width: 32px; height: 32px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; padding: 0;
+        }
+        
+        .health-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-yellow);
+            min-width: 30px;
+        }
+
+        .lln-box {
+            background-color: #1a1a1a;
+            border: 1px dashed #555;
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 10px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .stat-box {
+            background-color: #252525;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            font-size: 0.9rem;
+        }
+
+        .stat-box.live { border-color: var(--accent-red); }
+        .stat-box.blank { border-color: var(--accent-green); }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .live-text { color: var(--accent-red); }
+        .blank-text { color: var(--accent-green); }
+
+        .advice-box {
+            background-color: #26222b;
+            border: 2px dashed #bb86fc;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .item-advice-box {
+            background-color: #1e252b;
+            border: 1px solid var(--accent-blue);
+            border-radius: 8px;
+            padding: 12px;
+            margin: 15px 0;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .item-advice-box p {
+            margin: 4px 0;
+            border-bottom: 1px solid #2a333b;
+            padding-bottom: 6px;
+        }
+        .item-advice-box p:last-child { border-bottom: none; }
+
+        .advice-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .advice-text {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .magazine-visual {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            justify-content: center;
+        }
+
+        .slot-wrapper {
+            display: flex; flex-direction: column; align-items: center; gap: 4px;
+        }
+
+        .slot {
+            width: 35px; height: 35px;
+            border-radius: 50%;
+            background-color: #2b2b2b;
+            border: 2px solid #555;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.85rem; font-weight: bold;
+            cursor: pointer;
+        }
+
+        .slot.current { border-color: #ffeb3b; box-shadow: 0 0 8px #ffeb3b; }
+        .slot.live { background-color: var(--accent-red); color: white; border-color: #ff8a80; }
+        .slot.blank { background-color: var(--accent-green); color: black; border-color: #69f0ae; }
+        .slot.unknown { background-color: #2b2b2b; color: var(--text-muted); border-style: dashed; }
+        .slot.inverted { box-shadow: 0 0 10px #bb86fc !important; border-color: #bb86fc !important; }
+
+        .slot-prob { font-size: 0.7rem; font-weight: bold; }
+
+        .hint-click {
+            font-size: 0.75rem; color: var(--accent-yellow);
+            text-align: center; margin-top: 10px; margin-bottom: 10px;
+            font-weight: bold; background: #2b2b2b; padding: 6px; border-radius: 6px;
+        }
+
+        .action-grid, .item-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .btn-live { background-color: #b71c1c; color: white; border: 1px solid #c62828; padding: 12px; font-size: 0.9rem;}
+        .btn-blank { background-color: #1b5e20; color: white; border: 1px solid #2e7d32; padding: 12px; font-size: 0.9rem;}
+        
+        .item-actions button { background-color: #2b2b2b; border: 1px solid #444; font-size: 0.85rem; }
+
+        .hidden { display: none; }
+
+        @media (max-width: 400px) {
+            .health-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Shotgun Probabilitäten</h1>
+
+    <div class="section" id="setup-section">
+        <label>Rundenstart: Magazin konfigurieren</label>
+        <div class="input-group">
+            <div class="input-box">
+                <span style="font-size: 0.8rem; color: var(--accent-red);">Scharf:</span>
+                <input type="number" id="input-live" min="0" max="8" value="2">
+            </div>
+            <div class="input-box">
+                <span style="font-size: 0.8rem; color: var(--accent-green);">Plätzer:</span>
+                <input type="number" id="input-blank" min="0" max="8" value="2">
+            </div>
+            <div class="input-box">
+                <span style="font-size: 0.8rem; color: var(--accent-yellow);">Max Blitze:</span>
+                <input type="number" id="input-health" min="1" max="8" value="4">
+            </div>
+        </div>
+        <button class="primary" onclick="initRound()">Runde starten</button>
+        <button class="btn-hard-reset" onclick="hardReset()">🛑 Alles auf Null</button>
+    </div>
+
+    <div class="section hidden" id="game-section">
+        <div class="health-grid">
+            <div class="health-box">
+                <div class="health-title">Du (Blitze)</div>
+                <div class="health-controls">
+                    <button class="health-btn" onclick="changeHealth('player', -1)">-</button>
+                    <div class="health-value" id="player-health">4</div>
+                    <button class="health-btn" onclick="changeHealth('player', 1)">+</button>
+                </div>
+            </div>
+            <div class="health-box">
+                <div class="health-title">Dealer (Blitze)</div>
+                <div class="health-controls">
+                    <button class="health-btn" onclick="changeHealth('dealer', -1)">-</button>
+                    <div class="health-value" id="dealer-health">4</div>
+                    <button class="health-btn" onclick="changeHealth('dealer', 1)">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+            <label style="margin:0; font-size: 0.8rem;">Lauf-Status (Nächster Schuss)</label>
+            <button onclick="nextRound()" style="font-size: 0.75rem; padding: 4px 8px; background-color: #5c3a21; border: 1px solid #ff9800; color: #fff;">Nächste Runde</button>
+        </div>
+
+        <div class="lln-box" id="lln-display"></div>
+        
+        <div class="magazine-visual" id="magazine-visual"></div>
+        <div class="hint-click">💡 Klicke auf Kreise: 1x Rot (Scharf) ➔ 2x Grün (Plätzer) ➔ 3x Grau</div>
+
+        <div class="stats-grid">
+            <div class="stat-box live">
+                <div>Scharf (Slot 1)</div>
+                <div class="stat-value live-text" id="prob-live">0%</div>
+            </div>
+            <div class="stat-box blank">
+                <div>Plätzer (Slot 1)</div>
+                <div class="stat-value blank-text" id="prob-blank">0%</div>
+            </div>
+        </div>
+
+        <div class="advice-box">
+            <div class="advice-title">Ziel-Empfehlung</div>
+            <div class="advice-text" id="advice-text">-</div>
+        </div>
+
+        <div class="item-advice-box">
+            <div class="advice-title" style="color: var(--accent-blue); margin-bottom: 8px;">💡 Smarte Item-Tipps:</div>
+            <div id="item-advice-text">-</div>
+        </div>
+
+        <label style="margin-top: 15px; font-size: 0.8rem;">Was kam gerade aus dem Lauf?</label>
+        <div class="action-grid">
+            <button class="btn-live" onclick="removeShell('live')">💥 SCHARF</button>
+            <button class="btn-blank" onclick="removeShell('blank')">💨 PLÄTZER</button>
+        </div>
+
+        <label style="margin-top: 15px; font-size: 0.8rem;">Aktionen</label>
+        <div class="item-actions">
+            <button onclick="useInverter()">🔄 Invertieren</button>
+            <button onclick="undoLast()">↩️ Rückgängig</button>
+        </div>
+        
+        <div id="item-info" style="margin-top: 10px; font-size: 0.85rem; color: #ffeb3b; text-align: center; min-height: 20px;"></div>
+    </div>
+</div>
+
+<script>
+    let magazine = []; let historyStack = [];
+    let maxHealth = 4, pHealth = 4, dHealth = 4;
+    let totalLivesLeft = 0, totalBlanksLeft = 0;
+    let globalTotalLives = 0, globalTotalBlanks = 0;
+
+    function initRound() {
+        totalLivesLeft = parseInt(document.getElementById('input-live').value) || 0;
+        totalBlanksLeft = parseInt(document.getElementById('input-blank').value) || 0;
+        maxHealth = parseInt(document.getElementById('input-health').value) || 4;
+        const total = totalLivesLeft + totalBlanksLeft;
+        if (total <= 0 || total > 8) return alert("Bitte 1-8 Patronen angeben.");
+        pHealth = dHealth = maxHealth;
+        updateHealthUI();
+        magazine = Array.from({length: totalLivesLeft}, () => ({type: 'unknown', inverted: false}))
+             .concat(Array.from({length: totalBlanksLeft}, () => ({type: 'unknown', inverted: false})));
+        document.getElementById('setup-section').classList.add('hidden');
+        document.getElementById('game-section').classList.remove('hidden');
+        document.getElementById('item-info').innerText = '';
+        updateLLN(); updateUI();
+    }
+
+    function hardReset() {
+        if(confirm("Komplettes Spiel zurücksetzen?")) {
+            globalTotalLives = globalTotalBlanks = 0;
+            document.getElementById('input-live').value = document.getElementById('input-blank').value = 2;
+            document.getElementById('input-health').value = 4;
+            updateLLN();
+        }
+    }
+
+    function cycleSlot(index) {
+        const slot = magazine[index];
+        if (slot.inverted) return alert("⚠️ Invertiert! Nutze 'Rückgängig'.");
+        saveState();
+        slot.type = slot.type === 'unknown' ? 'live' : slot.type === 'live' ? 'blank' : 'unknown';
+        updateUI();
+    }
+
+    function saveState() {
+        historyStack.push({ magazine: JSON.parse(JSON.stringify(magazine)), pH: pHealth, dH: dHealth, tl: totalLivesLeft, tb: totalBlanksLeft, gl: globalTotalLives, gb: globalTotalBlanks });
+    }
+
+    function changeHealth(target, amount) {
+        saveState();
+        if (target === 'player') pHealth = Math.max(0, Math.min(maxHealth, pHealth + amount));
+        else dHealth = Math.max(0, Math.min(maxHealth, dHealth + amount));
+        updateHealthUI(); updateUI(); 
+    }
+
+    function updateHealthUI() {
+        document.getElementById('player-health').innerText = pHealth;
+        document.getElementById('dealer-health').innerText = dHealth;
+    }
+
+    function updateLLN() {
+        const total = globalTotalLives + globalTotalBlanks;
+        const llnBox = document.getElementById('lln-display');
+        if (total === 0) return llnBox.innerHTML = "⚖️ <b>RNG Tendenz:</b> Keine Daten";
+        llnBox.innerHTML = `⚖️ <b>RNG Tendenz (${total} Schüsse):</b> <b>${((globalTotalLives/total)*100).toFixed(1)}%</b> 💥 / <b>${((globalTotalBlanks/total)*100).toFixed(1)}%</b> 💨`;
+    }
+
+    function updateUI() {
+        const visual = document.getElementById('magazine-visual'); visual.innerHTML = '';
+        if (magazine.length === 0) {
+            document.getElementById('prob-live').innerText = '0%'; document.getElementById('prob-blank').innerText = '0%';
+            document.getElementById('advice-text').innerHTML = `Magazin leer!<br><button class="primary" onclick="nextRound()">Nächste Runde</button>`;
+            document.getElementById('item-advice-text').innerText = '-';
+            return;
+        }
+
+        const knownLives = magazine.filter(x => x.type === 'live').length;
+        const knownBlanks = magazine.filter(x => x.type === 'blank').length;
+        const unknowns = magazine.filter(x => x.type === 'unknown').length;
+        const uLives = Math.max(0, totalLivesLeft - knownLives);
+        const uBlanks = Math.max(0, totalBlanksLeft - knownBlanks);
+        const totalU = uLives + uBlanks;
+
+        let pLiveBase = 0, pBlankBase = 0;
+        if (unknowns > 0 && totalU > 0) {
+            pLiveBase = (uLives / totalU) * 100; pBlankBase = (uBlanks / totalU) * 100;
+        }
+
+        magazine.forEach((s, i) => {
+            const w = document.createElement('div'); w.className = 'slot-wrapper';
+            const el = document.createElement('div');
+            el.className = `slot ${s.type}`;
+            if (i === 0) el.classList.add('current');
+            if (s.inverted) el.classList.add('inverted');
+            el.innerText = i + 1; el.onclick = () => cycleSlot(i);
+            
+            const pt = document.createElement('div'); pt.className = 'slot-prob';
+            if (s.type === 'live') { pt.innerText = '100%'; pt.style.color = 'var(--accent-red)'; }
+            else if (s.type === 'blank') { pt.innerText = '100%'; pt.style.color = 'var(--accent-green)'; }
+            else { pt.innerText = pLiveBase.toFixed(0) + '%'; pt.style.color = 'var(--text-muted)'; }
+
+            w.appendChild(el); w.appendChild(pt); visual.appendChild(w);
+        });
+
+        let pLive, pBlank;
+        if (magazine[0].type === 'live') { pLive = 100; pBlank = 0; }
+        else if (magazine[0].type === 'blank') { pLive = 0; pBlank = 100; }
+        else { pLive = pLiveBase; pBlank = pBlankBase; }
+
+        document.getElementById('prob-live').innerText = pLive.toFixed(0) + '%';
+        document.getElementById('prob-blank').innerText = pBlank.toFixed(0) + '%';
+
+        const adv = document.getElementById('advice-text');
+        if (totalLivesLeft === 0 || magazine[0].type === 'blank' || pBlank === 100) {
+            adv.style.color = 'var(--accent-green)'; adv.innerText = 'Schieß auf dich selbst (Gratiszug!)';
+        } else if (pBlank > 50) {
+            adv.style.color = 'var(--accent-green)'; adv.innerText = 'Schieß auf dich selbst!';
+        } else if (pBlank === 50) {
+            if (magazine.length === 2) {
+                adv.style.color = 'var(--accent-green)'; adv.innerText = 'Schieß auf dich selbst!';
+            } else {
+                adv.style.color = 'var(--accent-red)'; adv.innerText = 'Schieß auf den Dealer!';
+            }
+        } else {
+            adv.style.color = 'var(--accent-red)'; adv.innerText = 'Schieß auf den Dealer!';
+        }
+
+        let html = "";
+        
+        // LUPE / HANDY LOGIC
+        if (totalLivesLeft === 0 || totalBlanksLeft === 0) {
+            html += "<p>🔍/📱 <b>Lupe/Handy:</b> Nutzlos (alles bekannt).</p>";
+        } else {
+            if (magazine[0].type !== 'unknown') html += "<p>🔍 <b>Lupe:</b> Slot 1 ist bekannt.</p>";
+            else if (pLive === 50) html += "<p>🔍 <b>Lupe:</b> DRINGEND NUTZEN! Münzwurf auflösen.</p>";
+            else if (pHealth <= 2 || pHealth < dHealth) html += "<p>🔍 <b>Lupe:</b> WICHTIG! Keine Risiken eingehen.</p>";
+            else html += "<p>🔍 <b>Lupe:</b> Gut zur Absicherung.</p>";
+            
+            if (magazine.length > 1) html += "<p>📱 <b>Handy:</b> Perfekt für spätere Slots (2-8).</p>";
+            else html += "<p>📱 <b>Handy:</b> Nutzlos (nur noch 1 Patrone).</p>";
+        }
+
+        // ITEMS LOGIC (Messer & Handschellen)
+        if (pLive === 100 || magazine[0].type === 'live') {
+            html += "<p>🔪 <b>Messer:</b> PFLICHT! Doppelter Schaden!</p><p>🔗 <b>Handschellen:</b> PERFEKT! Dealer aussetzen.</p>";
+        } else if (totalLivesLeft === 0 || magazine[0].type === 'blank') {
+            html += "<p>🔪 <b>Messer:</b> Nutzlos.</p><p>🔗 <b>Handschellen:</b> VERSCHWENDUNG! Du kriegst eh Freizug.</p>";
+        } else {
+            if (pLive > 50) {
+                html += "<p>🔪 <b>Messer:</b> Gutes Risiko.</p><p>🔗 <b>Handschellen:</b> Starker Zug. Hohe Trefferchance, und falls Plätzer, behältst du die Waffe.</p>";
+            } else if (pLive === 50) {
+                if (magazine.length === 2) {
+                    html += "<p>🔪 <b>Messer:</b> Aufheben.</p><p>🔗 <b>Handschellen:</b> RISIKO = 0! Freischuss auf ihn. Wenn es der Plätzer ist, gehört die 100% Scharfe danach dir!</p>";
+                } else {
+                    html += "<p>🔪 <b>Messer:</b> Aufheben.</p><p>🔗 <b>Handschellen:</b> Solide für den Münzwurf. Du sicherst dir die Kettenkontrolle, falls es ein Plätzer ist.</p>";
+                }
+            } else {
+                html += "<p>🔪 <b>Messer:</b> Aufheben.</p><p>🔗 <b>Handschellen:</b> Aufheben. Schieß bei hoher Plätzer-Chance lieber auf dich selbst.</p>";
+            }
+        }
+
+        // ITEMS LOGIC (Bier & Inverter)
+        if (pLive === 100 || magazine[0].type === 'live') {
+            if (totalLivesLeft > 1 && totalBlanksLeft === 0) html += "<p>🍺 <b>Bier:</b> PRO-MOVE! Wegpumpen, Zug behalten.</p>";
+            else html += "<p>🍺 <b>Bier:</b> NICHT NUTZEN! Wirft Scharfe weg.</p>";
+            html += "<p>🔄 <b>Inverter:</b> BLOß NICHT!</p>";
+        } else if (totalLivesLeft === 0 || magazine[0].type === 'blank') {
+            html += "<p>🍺 <b>Bier:</b> VERSCHWENDUNG!</p><p>🔄 <b>Inverter:</b> PERFEKT! Auf Dealer feuern.</p>";
+        } else if (pLive > 60) {
+            html += "<p>🍺 <b>Bier:</b> Schlecht. Wirft Scharfe weg.</p><p>🔄 <b>Inverter:</b> Schlechte Idee.</p>";
+        } else if (pBlank > 60) {
+            html += "<p>🍺 <b>Bier:</b> Verschwendung! Schieß auf dich selbst.</p><p>🔄 <b>Inverter:</b> Sehr gut!</p>";
+        } else {
+            html += "<p>🍺 <b>Bier:</b> PERFEKTER EINSATZ! Münzwurf umgehen.</p><p>🔄 <b>Inverter:</b> Blind sinnlos.</p>";
+        }
+
+        // HEALTH LOGIC
+        if (pHealth === maxHealth) html += "<p>🚬/💊 <b>Heilung:</b> Nutzlos (voll).</p>";
+        else {
+            html += "<p>🚬 <b>Zigaretten:</b> SOFORT NUTZEN!</p>";
+            if (pHealth === 1) html += "<p>💊 <b>Tabletten:</b> NUR IM NOTFALL (-1 killt dich).</p>";
+            else if (maxHealth - pHealth >= 2) html += "<p>💊 <b>Tabletten:</b> Guter Einsatz!</p>";
+            else html += "<p>💊 <b>Tabletten:</b> Hohes Risiko für +1 Leben.</p>";
+        }
+        
+        document.getElementById('item-advice-text').innerHTML = html;
+    }
+
+    function removeShell(type) {
+        if (magazine.length === 0) return;
+        saveState();
+        if (type === 'live') { totalLivesLeft = Math.max(0, totalLivesLeft - 1); globalTotalLives++; }
+        if (type === 'blank') { totalBlanksLeft = Math.max(0, totalBlanksLeft - 1); globalTotalBlanks++; }
+        magazine.shift(); document.getElementById('item-info').innerText = `War ${type === 'live' ? 'SCHARF' : 'PLÄTZER'}.`;
+        updateLLN(); updateUI();
+    }
+
+    function useInverter() {
+        if (magazine.length === 0) return;
+        const s = magazine[0];
+        if (s.type === 'unknown') return alert("💡 Erst Slot 1 anklicken (Scharf/Plätzer), dann invertieren!");
+        saveState();
+        if (s.type === 'live') { s.type = 'blank'; totalLivesLeft = Math.max(0, totalLivesLeft-1); totalBlanksLeft++; }
+        else { s.type = 'live'; totalBlanksLeft = Math.max(0, totalBlanksLeft-1); totalLivesLeft++; }
+        s.inverted = true; document.getElementById('item-info').innerText = '🔄 Invertiert!';
+        updateUI();
+    }
+
+    function undoLast() {
+        if (historyStack.length > 0) {
+            const l = historyStack.pop();
+            magazine = l.magazine; pHealth = l.pH; dHealth = l.dH;
+            totalLivesLeft = l.tl; totalBlanksLeft = l.tb; globalTotalLives = l.gl; globalTotalBlanks = l.gb;
+            updateHealthUI(); updateLLN(); document.getElementById('item-info').innerText = '↩️ Rückgängig.'; updateUI();
+        }
+    }
+    function nextRound() { document.getElementById('setup-section').classList.remove('hidden'); document.getElementById('game-section').classList.add('hidden'); historyStack = []; }
+</script>
+</body>
+</html>

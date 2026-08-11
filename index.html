@@ -299,6 +299,24 @@
         .item-actions button { background-color: #2b2b2b; border: 1px solid #444; font-size: 0.85rem; }
 
         .hidden { display: none; }
+        
+        .footer-info {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 20px;
+            border-top: 1px solid #2c2c2c;
+            padding-top: 15px;
+        }
+        
+        .footer-info a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        
+        .footer-info a:hover {
+            text-decoration: underline;
+        }
 
         @media (max-width: 400px) {
             .health-grid { grid-template-columns: 1fr; }
@@ -394,6 +412,10 @@
         </div>
         
         <div id="item-info" style="margin-top: 10px; font-size: 0.85rem; color: #ffeb3b; text-align: center; min-height: 20px;"></div>
+    </div>
+    
+    <div class="footer-info">
+        v7.6 &copy; 2026 by <a href="https://github.com/sambaweb" target="_blank" rel="noopener noreferrer">Sambaweb</a>
     </div>
 </div>
 
@@ -491,7 +513,7 @@
             const pt = document.createElement('div'); pt.className = 'slot-prob';
             if (s.type === 'live') { pt.innerText = '100%'; pt.style.color = 'var(--accent-red)'; }
             else if (s.type === 'blank') { pt.innerText = '100%'; pt.style.color = 'var(--accent-green)'; }
-            else { pt.innerText = pLiveBase.toFixed(0) + '%'; pt.style.color = 'var(--text-muted)'; }
+            else { pt.innerHTML = `<span style="color:var(--accent-red)">${pLiveBase.toFixed(0)}%</span><br><span style="color:var(--accent-green)">${pBlankBase.toFixed(0)}%</span>`; }
 
             w.appendChild(el); w.appendChild(pt); visual.appendChild(w);
         });
@@ -596,7 +618,7 @@
         saveState();
         if (s.type === 'live') { s.type = 'blank'; totalLivesLeft = Math.max(0, totalLivesLeft-1); totalBlanksLeft++; }
         else { s.type = 'live'; totalBlanksLeft = Math.max(0, totalBlanksLeft-1); totalLivesLeft++; }
-        s.inverted = true; document.getElementById('item-info').innerText = '🔄 Inverted!';
+        s.inverted = true; document.getElementById('item-info').innerHTML = '🔄 Inverted!<br><span style="color: var(--accent-red);">⚠️ WARNING: Don\'t mix up Live and Blänk when firing now!</span>';
         updateUI();
     }
 

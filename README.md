@@ -15,6 +15,10 @@ A smart, mobile-friendly probability calculator and tactical assistant for the g
 * **Mobile-First Design:** Fully optimized for smartphones. No zooming, no accidental scrolling—it feels like a native app.
 * **Inverter Support:** Accurately recalculates the remaining shell pool when you invert a known shell.
 
+### 🔄 Recent Updates (v7.6)
+* Added version tracking and copyright footer.
+* Minor UI refinements and logic polish.
+
 ### 🚀 How to Use
 1. Enter the starting shells (Live/Blänk) and health points.
 2. If you use a Magnifying Glass/Phone, click the corresponding shell circle to set it to **Red (Live)** or **Green (Blänk)**.
@@ -40,6 +44,10 @@ Ein smarter, für Handys optimierter Probabilitätsrechner und Taktik-Assistent 
 * **Gesetz der großen Zahl (LLN):** Trackt die globale RNG-Tendenz über all deine Runden hinweg.
 * **Mobile-First Design:** Komplett für Smartphones optimiert. Kein lästiges Zoomen, kein Verrutschen – fühlt sich an wie eine native App.
 * **Inverter-Logik:** Berechnet den restlichen Patronen-Pool absolut fehlerfrei neu, wenn du eine bekannte Patrone invertierst.
+
+### 🔄 Letzte Updates (v7.6)
+* Versionsanzeige und Copyright-Footer hinzugefügt.
+* Kleinere UI-Verbesserungen und Logik-Feinschliff.
 
 ### 🚀 Bedienung
 1. Trage die Start-Patronen (Scharf/Plätzer) und die Lebenspunkte ein.

@@ -17,6 +17,7 @@ A smart, mobile-friendly probability calculator and tactical assistant for the g
 * **Inverter Support:** Accurately recalculates the remaining shell pool when you invert a known shell.
 
 ### 🔄 Changelog
+* **v7.7.1:** Fixed an Expected Value (EV) calculation bug where the algorithm did not accurately deduct the negative follow-up state (Dealer's turn) when firing a live shell. Targets are now rated completely flawlessly.
 * **v7.7.0:** Added **Expected Value (EV)** calculation for target recommendations. The tool now calculates the mathematical payout of every shot for the rest of the round, guiding you perfectly through non-item scenarios. Improved UI feedback showing exactly why a target is chosen.
 * **v7.6.0:** Added version tracking and copyright footer. Minor UI refinements and logic polish.
 
@@ -48,6 +49,7 @@ Ein smarter, für Handys optimierter Probabilitätsrechner und Taktik-Assistent 
 * **Inverter-Logik:** Berechnet den restlichen Patronen-Pool absolut fehlerfrei neu, wenn du eine bekannte Patrone invertierst.
 
 ### 🔄 Changelog
+* **v7.7.1:** EV-Berechnungs-Bug behoben: Der Algorithmus beachtet jetzt präzise den negativen Folgezustand (Zusätzlicher Zug des Dealers), wenn eine scharfe Patrone abgefeuert wird. Die Zielempfehlungen sind nun mathematisch makellos.
 * **v7.7.0:** **Erwartungswert (EV)**-Berechnung für Zielempfehlungen hinzugefügt. Das Tool berechnet jetzt den mathematischen Netto-Vorteil für den gesamten restlichen Verlauf der Runde und führt dich so fehlerfrei durch Situationen ohne Items. Verbessertes UI-Feedback, das dir präzise anzeigt, warum ein Ziel die bessere Wahl ist.
 * **v7.6.0:** Versionsanzeige und Copyright-Footer hinzugefügt. Kleinere UI-Verbesserungen und Logik-Feinschliff.
 

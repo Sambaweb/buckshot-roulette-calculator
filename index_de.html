@@ -415,7 +415,7 @@
     </div>
     
     <div class="footer-info">
-        v7.7.0 &copy; 2026 by <a href="https://github.com/sambaweb" target="_blank" rel="noopener noreferrer">Sambaweb</a>
+        v7.7.1 &copy; 2026 by <a href="https://github.com/sambaweb" target="_blank" rel="noopener noreferrer">Sambaweb</a>
     </div>
 </div>
 
@@ -438,8 +438,8 @@
         const pLive = live / total;
         const pDud = dud / total;
 
-        const evDealer = pLive * 1 + pDud * (-getEV(live, dud - 1));
-        const evSelf = pLive * (-1) + pDud * getEV(live, dud - 1);
+        const evDealer = pLive * (1 - getEV(live - 1, dud)) + pDud * (-getEV(live, dud - 1));
+        const evSelf = pLive * (-1 - getEV(live - 1, dud)) + pDud * getEV(live, dud - 1);
 
         evMemo[key] = Math.max(evDealer, evSelf);
         return evMemo[key];
@@ -560,8 +560,8 @@
             const evLiveChance = uLives / totalU;
             const evDudChance = uBlanks / totalU;
             
-            const evDealer = evLiveChance * 1 + evDudChance * (-getEV(uLives, uBlanks - 1));
-            const evSelf = evLiveChance * (-1) + evDudChance * getEV(uLives, uBlanks - 1);
+            const evDealer = evLiveChance * (1 - getEV(uLives - 1, uBlanks)) + evDudChance * (-getEV(uLives, uBlanks - 1));
+            const evSelf = evLiveChance * (-1 - getEV(uLives - 1, uBlanks)) + evDudChance * getEV(uLives, uBlanks - 1);
 
             if (evDealer > evSelf) {
                 adv.style.color = 'var(--accent-red)'; 
@@ -571,7 +571,7 @@
                 adv.innerHTML = `Schieß auf dich selbst!<br><span style="font-size: 0.75rem; color: var(--text-muted);">EV: Du (${evSelf.toFixed(2)}) > Dealer (${evDealer.toFixed(2)})</span>`;
             } else {
                 adv.style.color = 'var(--accent-yellow)'; 
-                adv.innerHTML = `Egal (50/50)<br><span style="font-size: 0.75rem; color: var(--text-muted);">Erwartungswert ist für beide gleich (0.00)</span>`;
+                adv.innerHTML = `Egal (50/50)<br><span style="font-size: 0.75rem; color: var(--text-muted);">Erwartungswert ist für beide gleich (${evSelf.toFixed(2)})</span>`;
             }
         }
         // ---------------------------

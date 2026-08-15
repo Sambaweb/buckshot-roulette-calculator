@@ -415,7 +415,7 @@
     </div>
     
     <div class="footer-info">
-        v7.6 &copy; 2026 by <a href="https://github.com/sambaweb" target="_blank" rel="noopener noreferrer">Sambaweb</a>
+        v7.7.0 &copy; 2026 by <a href="https://github.com/sambaweb" target="_blank" rel="noopener noreferrer">Sambaweb</a>
     </div>
 </div>
 
@@ -424,6 +424,27 @@
     let maxHealth = 4, pHealth = 4, dHealth = 4;
     let totalLivesLeft = 0, totalBlanksLeft = 0;
     let globalTotalLives = 0, globalTotalBlanks = 0;
+
+    // --- EV LOGIC ---
+    const evMemo = {};
+    function getEV(live, dud) {
+        if (live <= 0) return 0;
+        if (dud <= 0) return live % 2 === 1 ? 1 : 0;
+
+        const key = `${live},${dud}`;
+        if (evMemo[key]) return evMemo[key];
+
+        const total = live + dud;
+        const pLive = live / total;
+        const pDud = dud / total;
+
+        const evDealer = pLive * 1 + pDud * (-getEV(live, dud - 1));
+        const evSelf = pLive * (-1) + pDud * getEV(live, dud - 1);
+
+        evMemo[key] = Math.max(evDealer, evSelf);
+        return evMemo[key];
+    }
+    // ----------------
 
     function initRound() {
         totalLivesLeft = parseInt(document.getElementById('input-live').value) || 0;
@@ -526,20 +547,34 @@
         document.getElementById('prob-live').innerText = pLive.toFixed(0) + '%';
         document.getElementById('prob-blank').innerText = pBlank.toFixed(0) + '%';
 
+        // --- NEW EV ADVICE LOGIC ---
         const adv = document.getElementById('advice-text');
+        
         if (totalLivesLeft === 0 || magazine[0].type === 'blank' || pBlank === 100) {
-            adv.style.color = 'var(--accent-green)'; adv.innerText = 'Shoot yourself!! (Free turn)';
-        } else if (pBlank > 50) {
-            adv.style.color = 'var(--accent-green)'; adv.innerText = 'Shoot yourself!';
-        } else if (pBlank === 50) {
-            if (magazine.length === 2) {
-                adv.style.color = 'var(--accent-green)'; adv.innerText = 'Shoot yourself!';
-            } else {
-                adv.style.color = 'var(--accent-red)'; adv.innerText = 'Shoot the dealer!';
-            }
+            adv.style.color = 'var(--accent-green)'; 
+            adv.innerHTML = 'Shoot yourself!<br><span style="font-size: 0.75rem; color: var(--text-muted);">Free turn secured</span>';
+        } else if (magazine[0].type === 'live' || pLive === 100) {
+            adv.style.color = 'var(--accent-red)'; 
+            adv.innerHTML = 'Shoot the dealer!<br><span style="font-size: 0.75rem; color: var(--text-muted);">Guaranteed hit</span>';
         } else {
-            adv.style.color = 'var(--accent-red)'; adv.innerText = 'Shoot the dealer!';
+            const evLiveChance = uLives / totalU;
+            const evDudChance = uBlanks / totalU;
+            
+            const evDealer = evLiveChance * 1 + evDudChance * (-getEV(uLives, uBlanks - 1));
+            const evSelf = evLiveChance * (-1) + evDudChance * getEV(uLives, uBlanks - 1);
+
+            if (evDealer > evSelf) {
+                adv.style.color = 'var(--accent-red)'; 
+                adv.innerHTML = `Shoot the dealer!<br><span style="font-size: 0.75rem; color: var(--text-muted);">EV: Dealer (${evDealer.toFixed(2)}) > You (${evSelf.toFixed(2)})</span>`;
+            } else if (evSelf > evDealer) {
+                adv.style.color = 'var(--accent-green)'; 
+                adv.innerHTML = `Shoot yourself!<br><span style="font-size: 0.75rem; color: var(--text-muted);">EV: You (${evSelf.toFixed(2)}) > Dealer (${evDealer.toFixed(2)})</span>`;
+            } else {
+                adv.style.color = 'var(--accent-yellow)'; 
+                adv.innerHTML = `Doesn't matter (50/50)<br><span style="font-size: 0.75rem; color: var(--text-muted);">Expected Value is equal (0.00)</span>`;
+            }
         }
+        // ---------------------------
 
         let html = "";
         

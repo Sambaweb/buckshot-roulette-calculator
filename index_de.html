@@ -51,297 +51,114 @@
             letter-spacing: 1px;
         }
 
-        .section {
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #2c2c2c;
-        }
-
-        .section:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        .input-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-
-        .input-box {
-            flex: 1 1 30%;
-            min-width: 100px;
-        }
+        .section { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #2c2c2c; }
+        .section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; font-size: 0.9rem; }
+        .input-group { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+        .input-box { flex: 1 1 30%; min-width: 100px; }
 
         input[type="number"] {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 10px;
-            background-color: #2b2b2b;
-            border: 1px solid #444;
-            color: white;
-            border-radius: 6px;
-            font-size: 1rem;
+            width: 100%; box-sizing: border-box; padding: 10px; background-color: #2b2b2b;
+            border: 1px solid #444; color: white; border-radius: 6px; font-size: 1rem;
+            text-align: center; font-weight: bold;
         }
 
         button {
-            background-color: #333;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.2s;
-            touch-action: manipulation;
+            background-color: #333; color: white; border: none; padding: 10px 15px;
+            border-radius: 6px; cursor: pointer; font-weight: bold; transition: background 0.2s; touch-action: manipulation;
         }
-
         button:hover { background-color: #444; }
 
-        button.primary {
-            background-color: #bb86fc;
-            color: #000;
-            width: 100%;
-            margin-top: 5px;
-            font-size: 1.05rem;
-            padding: 12px;
-        }
-
+        button.primary { background-color: #bb86fc; color: #000; width: 100%; margin-top: 5px; font-size: 1.05rem; padding: 12px; }
         button.primary:hover { background-color: #9965f4; }
+        .btn-hard-reset { background-color: #b71c1c; border: 1px solid #c62828; color: white; width: 100%; margin-top: 10px; padding: 10px; font-size: 0.9rem; }
 
-        .btn-hard-reset {
-            background-color: #b71c1c;
-            border: 1px solid #c62828;
-            color: white;
-            width: 100%;
-            margin-top: 10px;
-            padding: 10px;
-            font-size: 0.9rem;
-        }
+        .health-interactive-container { display: flex; justify-content: space-between; align-items: center; background-color: #252525; border: 2px solid #444; border-radius: 8px; padding: 10px 15px; margin-bottom: 10px; }
+        .health-side { display: flex; align-items: center; gap: 10px; }
+        .health-side.dealer { flex-direction: row-reverse; }
+        .health-label { font-size: 0.8rem; color: var(--text-muted); font-weight: bold; }
+        .health-bolts { display: flex; flex-wrap: wrap; gap: 4px; }
 
-        .health-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
+        .bolt { font-size: 1.3rem; cursor: pointer; opacity: 0.2; filter: grayscale(100%); transition: 0.1s; user-select: none; }
+        .bolt.active { opacity: 1; filter: drop-shadow(0 0 5px var(--accent-yellow)); }
 
-        .health-box {
-            background-color: #252525;
-            border: 2px solid #444;
-            border-radius: 8px;
-            padding: 10px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+        .inventory-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; margin-bottom: 15px; }
+        .inv-box { background-color: #252525; border: 2px solid #444; border-radius: 8px; padding: 10px; display: flex; flex-direction: column; align-items: center; }
+        .inv-title { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px; }
+        .inv-slots { display: grid; grid-template-columns: repeat(4, 32px); gap: 4px; justify-content: center; min-height: 32px; margin-bottom: 8px; }
+        .inv-item { width: 32px; height: 32px; background-color: #333; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; border: 1px solid #555; }
+        .inv-select { width: 100%; padding: 5px; background-color: #1e1e1e; color: white; border: 1px solid #444; border-radius: 4px; font-size: 0.85rem; }
 
-        .health-title {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
+        .lln-box { background-color: #1a1a1a; border: 1px dashed #555; border-radius: 6px; padding: 10px; text-align: center; font-size: 0.85rem; color: var(--text-muted); margin: 10px 0; }
 
-        .health-controls {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .health-btn {
-            background-color: #333;
-            width: 32px; height: 32px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.2rem; padding: 0;
-        }
-        
-        .health-value {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--accent-yellow);
-            min-width: 30px;
-        }
-
-        .lln-box {
-            background-color: #1a1a1a;
-            border: 1px dashed #555;
-            border-radius: 6px;
-            padding: 10px;
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin: 10px 0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            text-align: center;
-            margin: 15px 0;
-        }
-
-        .stat-box {
-            background-color: #252525;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #333;
-            font-size: 0.9rem;
-        }
-
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: center; margin: 15px 0; }
+        .stat-box { background-color: #252525; padding: 12px; border-radius: 8px; border: 1px solid #333; font-size: 0.9rem; }
         .stat-box.live { border-color: var(--accent-red); }
         .stat-box.blank { border-color: var(--accent-green); }
-
-        .stat-value {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-top: 5px;
-        }
-
+        .stat-value { font-size: 1.5rem; font-weight: bold; margin-top: 5px; }
         .live-text { color: var(--accent-red); }
         .blank-text { color: var(--accent-green); }
 
-        .advice-box {
-            background-color: #26222b;
-            border: 2px dashed #bb86fc;
-            border-radius: 8px;
-            padding: 12px;
-            text-align: center;
-            margin: 15px 0;
-        }
+        .advice-box { background-color: #26222b; border: 2px dashed #bb86fc; border-radius: 8px; padding: 12px; text-align: center; margin: 15px 0; }
+        .advice-text { font-size: 1.1rem; font-weight: bold; }
 
-        .item-advice-box {
-            background-color: #1e252b;
-            border: 1px solid var(--accent-blue);
-            border-radius: 8px;
-            padding: 12px;
-            margin: 15px 0;
-            font-size: 0.85rem;
-            line-height: 1.4;
-        }
+        .achievement-box { background-color: #107C10; color: white; border: 2px solid #5dc21e; border-radius: 8px; padding: 10px; text-align: center; font-weight: bold; font-size: 0.9rem; margin: 10px 0 0 0; text-shadow: 0px 0px 4px rgba(0,0,0,0.8); animation: pulse-green 1.5s infinite; }
+        .death-warning-box { background-color: #b71c1c; color: white; border: 2px solid #f44336; border-radius: 8px; padding: 10px; text-align: center; font-weight: bold; font-size: 0.9rem; margin: 10px 0 0 0; text-shadow: 0px 0px 4px rgba(0,0,0,0.8); animation: pulse-red 1s infinite; }
+        @keyframes pulse-green { 0% { box-shadow: 0 0 10px #107C10; } 50% { box-shadow: 0 0 25px #5dc21e; } 100% { box-shadow: 0 0 10px #107C10; } }
+        @keyframes pulse-red { 0% { box-shadow: 0 0 10px #b71c1c; } 50% { box-shadow: 0 0 25px #ff5252; } 100% { box-shadow: 0 0 10px #b71c1c; } }
 
-        .item-advice-box p {
-            margin: 4px 0;
-            border-bottom: 1px solid #2a333b;
-            padding-bottom: 6px;
-        }
+        .item-advice-box { background-color: #1e252b; border: 1px solid var(--accent-blue); border-radius: 8px; padding: 12px; margin: 15px 0; font-size: 0.85rem; line-height: 1.4; }
+        .item-advice-box p { margin: 4px 0; border-bottom: 1px solid #2a333b; padding-bottom: 6px; }
         .item-advice-box p:last-child { border-bottom: none; }
+        .advice-title { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+        .owned-item { background-color: rgba(187, 134, 252, 0.15); border-radius: 4px; padding: 2px 4px; border: 1px solid #bb86fc; }
 
-        .advice-title {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 4px;
-        }
-
-        .advice-text {
-            font-size: 1.1rem;
-            font-weight: bold;
-        }
-
-        .magazine-visual {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-top: 10px;
-            justify-content: center;
-        }
-
-        .slot-wrapper {
-            display: flex; flex-direction: column; align-items: center; gap: 4px;
-        }
-
-        .slot {
-            width: 35px; height: 35px;
-            border-radius: 50%;
-            background-color: #2b2b2b;
-            border: 2px solid #555;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.85rem; font-weight: bold;
-            cursor: pointer;
-        }
-
+        .magazine-visual { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; justify-content: center; }
+        .slot-wrapper { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .slot { width: 35px; height: 35px; border-radius: 50%; background-color: #2b2b2b; border: 2px solid #555; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: bold; cursor: pointer; }
         .slot.current { border-color: #ffeb3b; box-shadow: 0 0 8px #ffeb3b; }
         .slot.live { background-color: var(--accent-red); color: white; border-color: #ff8a80; }
         .slot.blank { background-color: var(--accent-green); color: black; border-color: #69f0ae; }
         .slot.unknown { background-color: #2b2b2b; color: var(--text-muted); border-style: dashed; }
         .slot.inverted { box-shadow: 0 0 10px #bb86fc !important; border-color: #bb86fc !important; }
-
         .slot-prob { font-size: 0.7rem; font-weight: bold; }
+        .hint-click { font-size: 0.75rem; color: var(--accent-yellow); text-align: center; margin-top: 10px; margin-bottom: 10px; font-weight: bold; background: #2b2b2b; padding: 6px; border-radius: 6px; }
 
-        .hint-click {
-            font-size: 0.75rem; color: var(--accent-yellow);
-            text-align: center; margin-top: 10px; margin-bottom: 10px;
-            font-weight: bold; background: #2b2b2b; padding: 6px; border-radius: 6px;
-        }
-
-        .action-grid, .item-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
+        .action-grid, .item-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
         .btn-live { background-color: #b71c1c; color: white; border: 1px solid #c62828; padding: 12px; font-size: 0.9rem;}
         .btn-blank { background-color: #1b5e20; color: white; border: 1px solid #2e7d32; padding: 12px; font-size: 0.9rem;}
-        
-        .item-actions button { background-color: #2b2b2b; border: 1px solid #444; font-size: 0.85rem; }
+        .item-actions button { background-color: #2b2b2b; border: 1px solid #444; font-size: 0.85rem; padding: 12px; }
 
         .hidden { display: none; }
-
-        .footer-info {
-            text-align: center;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-top: 20px;
-            border-top: 1px solid #2c2c2c;
-            padding-top: 15px;
-        }
-        
-        .footer-info a {
-            color: var(--accent-blue);
-            text-decoration: none;
-        }
-        
-        .footer-info a:hover {
-            text-decoration: underline;
-        }
+        .footer-info { text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 20px; border-top: 1px solid #2c2c2c; padding-top: 15px; }
+        .footer-info a { color: var(--accent-blue); text-decoration: none; }
+        .footer-info a:hover { text-decoration: underline; }
 
         @media (max-width: 400px) {
-            .health-grid { grid-template-columns: 1fr; }
+            .health-interactive-container { flex-direction: column; gap: 10px; }
+            .health-side { width: 100%; justify-content: space-between; }
+            .health-side.dealer { flex-direction: row; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Shotgun Probabilitäten</h1>
-
     <div class="section" id="setup-section">
-        <label>Rundenstart: Magazin konfigurieren</label>
+        <h1>Shotgun Probabilitäten</h1>
+        <label>Rundenstart: Konfigurieren</label>
         <div class="input-group">
             <div class="input-box">
                 <span style="font-size: 0.8rem; color: var(--accent-red);">Scharf:</span>
-                <input type="number" id="input-live" min="0" max="8" value="2">
+                <input type="number" id="input-live" min="1" max="4" value="2">
             </div>
             <div class="input-box">
                 <span style="font-size: 0.8rem; color: var(--accent-green);">Plätzer:</span>
-                <input type="number" id="input-blank" min="0" max="8" value="2">
+                <input type="number" id="input-blank" min="1" max="4" value="2">
             </div>
             <div class="input-box">
-                <span style="font-size: 0.8rem; color: var(--accent-yellow);">Max Blitze:</span>
-                <input type="number" id="input-health" min="1" max="8" value="4">
+                <span style="font-size: 0.8rem; color: var(--accent-yellow);">Blitze:</span>
+                <input type="number" id="input-health" min="2" max="4" value="4">
             </div>
         </div>
         <button class="primary" onclick="initRound()">Runde starten</button>
@@ -349,22 +166,49 @@
     </div>
 
     <div class="section hidden" id="game-section">
-        <div class="health-grid">
-            <div class="health-box">
-                <div class="health-title">Du (Blitze)</div>
-                <div class="health-controls">
-                    <button class="health-btn" onclick="changeHealth('player', -1)">-</button>
-                    <div class="health-value" id="player-health">4</div>
-                    <button class="health-btn" onclick="changeHealth('player', 1)">+</button>
-                </div>
+        <div class="health-interactive-container">
+            <div class="health-side player">
+                <span class="health-label">DU</span>
+                <div class="health-bolts" id="player-health-bolts"></div>
             </div>
-            <div class="health-box">
-                <div class="health-title">Dealer (Blitze)</div>
-                <div class="health-controls">
-                    <button class="health-btn" onclick="changeHealth('dealer', -1)">-</button>
-                    <div class="health-value" id="dealer-health">4</div>
-                    <button class="health-btn" onclick="changeHealth('dealer', 1)">+</button>
-                </div>
+            <div class="health-side dealer">
+                <span class="health-label">DEALER</span>
+                <div class="health-bolts" id="dealer-health-bolts"></div>
+            </div>
+        </div>
+
+        <div class="inventory-container">
+            <div class="inv-box">
+                <div class="inv-title">Dein Inventar</div>
+                <div class="inv-slots" id="inv-player"></div>
+                <select class="inv-select" id="select-player" onchange="addItem('player', this.value); this.value='_none_';">
+                    <option value="_none_">+ Item hinzufügen</option>
+                    <option value="lupe">🔍 Lupe</option>
+                    <option value="handy">📱 Handy</option>
+                    <option value="messer">🔪 Messer</option>
+                    <option value="handschellen">🔗 Handschellen</option>
+                    <option value="bier">🍺 Bier</option>
+                    <option value="inverter">🔄 Inverter</option>
+                    <option value="zigaretten">🚬 Zigaretten</option>
+                    <option value="tabletten">💊 Tabletten</option>
+                    <option value="adrenalin">💉 Adrenalin</option>
+                </select>
+            </div>
+            <div class="inv-box">
+                <div class="inv-title">Dealer Inventar</div>
+                <div class="inv-slots" id="inv-dealer"></div>
+                <select class="inv-select" id="select-dealer" onchange="addItem('dealer', this.value); this.value='_none_';">
+                    <option value="_none_">+ Item hinzufügen</option>
+                    <option value="lupe">🔍 Lupe</option>
+                    <option value="handy">📱 Handy</option>
+                    <option value="messer">🔪 Messer</option>
+                    <option value="handschellen">🔗 Handschellen</option>
+                    <option value="bier">🍺 Bier</option>
+                    <option value="inverter">🔄 Inverter</option>
+                    <option value="zigaretten">🚬 Zigaretten</option>
+                    <option value="tabletten">💊 Tabletten</option>
+                    <option value="adrenalin">💉 Adrenalin</option>
+                </select>
             </div>
         </div>
 
@@ -374,11 +218,10 @@
         </div>
 
         <div class="lln-box" id="lln-display"></div>
-        
         <div class="magazine-visual" id="magazine-visual"></div>
         <div class="hint-click">💡 Klicke auf Kreise: 1x Rot (Scharf) ➔ 2x Grün (Plätzer) ➔ 3x Grau</div>
 
-        <div class="stats-grid">
+        <div class="stats-grid" style="margin-top: 0;">
             <div class="stat-box live">
                 <div>Scharf (Slot 1)</div>
                 <div class="stat-value live-text" id="prob-live">0%</div>
@@ -390,32 +233,34 @@
         </div>
 
         <div class="advice-box">
-            <div class="advice-title">Ziel-Empfehlung</div>
             <div class="advice-text" id="advice-text">-</div>
         </div>
 
-        <div class="item-advice-box">
-            <div class="advice-title" style="color: var(--accent-blue); margin-bottom: 8px;">💡 Smarte Item-Tipps:</div>
-            <div id="item-advice-text">-</div>
-        </div>
-
-        <label style="margin-top: 15px; font-size: 0.8rem;">Was kam gerade aus dem Lauf?</label>
-        <div class="action-grid">
+        <label style="text-align: center; display:block; font-size: 0.8rem; margin-top: 15px; margin-bottom: 8px;">Was kam gerade aus dem Lauf?</label>
+        <div class="action-grid" style="margin-bottom: 15px;">
             <button class="btn-live" onclick="removeShell('live')">💥 SCHARF</button>
             <button class="btn-blank" onclick="removeShell('blank')">💨 PLÄTZER</button>
         </div>
 
-        <label style="margin-top: 15px; font-size: 0.8rem;">Aktionen</label>
+        <label style="text-align: center; display:block; font-size: 0.8rem; margin-top: 5px; margin-bottom: 8px;">Aktionen</label>
         <div class="item-actions">
             <button onclick="useInverter()">🔄 Invertieren</button>
             <button onclick="undoLast()">↩️ Rückgängig</button>
         </div>
         
+        <div id="achievement-warning" class="achievement-box hidden">🏆 ACHTUNG: Full House Achievement Chance! 🏆</div>
+        <div id="death-warning" class="death-warning-box hidden">☠️ WARNUNG: Dealer hat eine Todes-Kombo (Messer+Inverter+Lupe)! ☠️</div>
+        
         <div id="item-info" style="margin-top: 10px; font-size: 0.85rem; color: #ffeb3b; text-align: center; min-height: 20px;"></div>
+
+        <div class="item-advice-box">
+            <div class="advice-title" style="color: var(--accent-blue); margin-bottom: 8px;">💡 Smarte Item-Tipps:</div>
+            <div id="item-advice-text">-</div>
+        </div>
     </div>
     
     <div class="footer-info">
-        v7.7.1 &copy; 2026 by <a href="https://github.com/sambaweb" target="_blank" rel="noopener noreferrer">Sambaweb</a>
+        v8.1.0 &copy; 2026 by <a href="https://github.com/sambaweb" target="_blank" rel="noopener noreferrer">Sambaweb</a>
     </div>
 </div>
 
@@ -424,48 +269,67 @@
     let maxHealth = 4, pHealth = 4, dHealth = 4;
     let totalLivesLeft = 0, totalBlanksLeft = 0;
     let globalTotalLives = 0, globalTotalBlanks = 0;
+    let playerItems = []; let dealerItems = [];
 
-    // --- EV LOGIC ---
+    const itemIcons = {
+        'lupe': '🔍', 'handy': '📱', 'messer': '🔪', 'handschellen': '🔗',
+        'bier': '🍺', 'inverter': '🔄', 'zigaretten': '🚬', 'tabletten': '💊', 'adrenalin': '💉'
+    };
+    
+    const deNames = {
+        'lupe': 'Lupe', 'handy': 'Handy', 'messer': 'Messer', 'handschellen': 'Handschellen',
+        'bier': 'Bier', 'inverter': 'Inverter', 'zigaretten': 'Zigaretten', 'tabletten': 'Tabletten', 'adrenalin': 'Adrenalin'
+    };
+
     const evMemo = {};
     function getEV(live, dud) {
         if (live <= 0) return 0;
         if (dud <= 0) return live % 2 === 1 ? 1 : 0;
-
         const key = `${live},${dud}`;
         if (evMemo[key]) return evMemo[key];
-
         const total = live + dud;
-        const pLive = live / total;
-        const pDud = dud / total;
-
+        const pLive = live / total; const pDud = dud / total;
         const evDealer = pLive * (1 - getEV(live - 1, dud)) + pDud * (-getEV(live, dud - 1));
         const evSelf = pLive * (-1 - getEV(live - 1, dud)) + pDud * getEV(live, dud - 1);
-
-        evMemo[key] = Math.max(evDealer, evSelf);
-        return evMemo[key];
+        evMemo[key] = Math.max(evDealer, evSelf); return evMemo[key];
     }
-    // ----------------
 
     function initRound() {
-        totalLivesLeft = parseInt(document.getElementById('input-live').value) || 0;
-        totalBlanksLeft = parseInt(document.getElementById('input-blank').value) || 0;
-        maxHealth = parseInt(document.getElementById('input-health').value) || 4;
-        const total = totalLivesLeft + totalBlanksLeft;
-        if (total <= 0 || total > 8) return alert("Bitte 1-8 Patronen angeben.");
+        let l = parseInt(document.getElementById('input-live').value) || 1;
+        let b = parseInt(document.getElementById('input-blank').value) || 1;
+        let h = parseInt(document.getElementById('input-health').value) || 2;
+        
+        if (l < 1) l = 1; if (l > 4) l = 4;
+        if (b < 1) b = 1; if (b > 4) b = 4;
+        if (h < 2) h = 2; if (h > 4) h = 4;
+        
+        document.getElementById('input-live').value = l;
+        document.getElementById('input-blank').value = b;
+        document.getElementById('input-health').value = h;
+
+        totalLivesLeft = l;
+        totalBlanksLeft = b;
+        maxHealth = h;
+        
         pHealth = dHealth = maxHealth;
+        playerItems = []; dealerItems = [];
         updateHealthUI();
+        
         magazine = Array.from({length: totalLivesLeft}, () => ({type: 'unknown', inverted: false}))
-             .concat(Array.from({length: totalBlanksLeft}, () => ({type: 'unknown', inverted: false})));
+              .concat(Array.from({length: totalBlanksLeft}, () => ({type: 'unknown', inverted: false})));
+        
         document.getElementById('setup-section').classList.add('hidden');
         document.getElementById('game-section').classList.remove('hidden');
         document.getElementById('item-info').innerText = '';
-        updateLLN(); updateUI();
+        
+        updateLLN(); renderInventory(); updateUI();
     }
 
     function hardReset() {
         if(confirm("Komplettes Spiel zurücksetzen?")) {
             globalTotalLives = globalTotalBlanks = 0;
-            document.getElementById('input-live').value = document.getElementById('input-blank').value = 2;
+            document.getElementById('input-live').value = 2;
+            document.getElementById('input-blank').value = 2;
             document.getElementById('input-health').value = 4;
             updateLLN();
         }
@@ -480,19 +344,66 @@
     }
 
     function saveState() {
-        historyStack.push({ magazine: JSON.parse(JSON.stringify(magazine)), pH: pHealth, dH: dHealth, tl: totalLivesLeft, tb: totalBlanksLeft, gl: globalTotalLives, gb: globalTotalBlanks });
+        historyStack.push({ 
+            magazine: JSON.parse(JSON.stringify(magazine)), 
+            pH: pHealth, dH: dHealth, tl: totalLivesLeft, tb: totalBlanksLeft, 
+            gl: globalTotalLives, gb: globalTotalBlanks,
+            pItems: [...playerItems], dItems: [...dealerItems]
+        });
     }
 
-    function changeHealth(target, amount) {
+    function setHealth(target, val) {
         saveState();
-        if (target === 'player') pHealth = Math.max(0, Math.min(maxHealth, pHealth + amount));
-        else dHealth = Math.max(0, Math.min(maxHealth, dHealth + amount));
+        if (target === 'player') pHealth = pHealth === val ? val - 1 : val;
+        else dHealth = dHealth === val ? val - 1 : val;
         updateHealthUI(); updateUI(); 
     }
 
     function updateHealthUI() {
-        document.getElementById('player-health').innerText = pHealth;
-        document.getElementById('dealer-health').innerText = dHealth;
+        const pCont = document.getElementById('player-health-bolts');
+        const dCont = document.getElementById('dealer-health-bolts');
+        pCont.innerHTML = ''; dCont.innerHTML = '';
+        
+        for (let i = 1; i <= maxHealth; i++) {
+            const b = document.createElement('div');
+            b.className = i <= pHealth ? 'bolt active' : 'bolt'; b.innerText = '⚡';
+            b.onclick = () => setHealth('player', i); pCont.appendChild(b);
+        }
+        for (let i = maxHealth; i >= 1; i--) {
+            const b = document.createElement('div');
+            b.className = i <= dHealth ? 'bolt active' : 'bolt'; b.innerText = '⚡';
+            b.onclick = () => setHealth('dealer', i); dCont.appendChild(b);
+        }
+    }
+
+    function addItem(target, item) {
+        if (item === '_none_') return;
+        saveState();
+        if (target === 'player') { if (playerItems.length < 8) playerItems.push(item); }
+        else { if (dealerItems.length < 8) dealerItems.push(item); }
+        renderInventory(); updateUI();
+    }
+
+    function consumeItem(target, index) {
+        saveState();
+        if (target === 'player') playerItems.splice(index, 1);
+        else dealerItems.splice(index, 1);
+        renderInventory(); updateUI();
+    }
+
+    function renderInventory() {
+        const pInv = document.getElementById('inv-player'); const dInv = document.getElementById('inv-dealer');
+        pInv.innerHTML = ''; dInv.innerHTML = '';
+
+        playerItems.forEach((item, i) => {
+            const el = document.createElement('div'); el.className = 'inv-item'; el.innerText = itemIcons[item];
+            el.onclick = () => consumeItem('player', i); pInv.appendChild(el);
+        });
+
+        dealerItems.forEach((item, i) => {
+            const el = document.createElement('div'); el.className = 'inv-item'; el.innerText = itemIcons[item];
+            el.onclick = () => consumeItem('dealer', i); dInv.appendChild(el);
+        });
     }
 
     function updateLLN() {
@@ -502,13 +413,27 @@
         llnBox.innerHTML = `⚖️ <b>RNG Tendenz (${total} Schüsse):</b> <b>${((globalTotalLives/total)*100).toFixed(1)}%</b> 💥 / <b>${((globalTotalBlanks/total)*100).toFixed(1)}%</b> 💨`;
     }
 
+    function checkEvents() {
+        const allPossible = ['lupe', 'handy', 'messer', 'handschellen', 'bier', 'inverter', 'zigaretten', 'tabletten', 'adrenalin'];
+        const combined = new Set([...playerItems, ...dealerItems]);
+        const achBox = document.getElementById('achievement-warning');
+        if (allPossible.every(item => combined.has(item))) achBox.classList.remove('hidden'); else achBox.classList.add('hidden');
+        
+        const deathBox = document.getElementById('death-warning');
+        if (dealerItems.includes('messer') && dealerItems.includes('inverter') && (dealerItems.includes('lupe') || dealerItems.includes('handy'))) {
+            deathBox.classList.remove('hidden');
+        } else { deathBox.classList.add('hidden'); }
+    }
+
+    function pClass(item) { return playerItems.includes(item) ? "class='owned-item'" : ""; }
+
     function updateUI() {
         const visual = document.getElementById('magazine-visual'); visual.innerHTML = '';
         if (magazine.length === 0) {
             document.getElementById('prob-live').innerText = '0%'; document.getElementById('prob-blank').innerText = '0%';
             document.getElementById('advice-text').innerHTML = `Magazin leer!<br><button class="primary" onclick="nextRound()">Nächste Runde</button>`;
-            document.getElementById('item-advice-text').innerText = '-';
-            return;
+            document.getElementById('item-advice-text').innerHTML = "<p style='text-align:center; color:var(--text-muted); border-bottom: none;'>Keine Items nutzbar.</p>";
+            checkEvents(); return;
         }
 
         const knownLives = magazine.filter(x => x.type === 'live').length;
@@ -519,23 +444,17 @@
         const totalU = uLives + uBlanks;
 
         let pLiveBase = 0, pBlankBase = 0;
-        if (unknowns > 0 && totalU > 0) {
-            pLiveBase = (uLives / totalU) * 100; pBlankBase = (uBlanks / totalU) * 100;
-        }
+        if (unknowns > 0 && totalU > 0) { pLiveBase = (uLives / totalU) * 100; pBlankBase = (uBlanks / totalU) * 100; }
 
         magazine.forEach((s, i) => {
             const w = document.createElement('div'); w.className = 'slot-wrapper';
-            const el = document.createElement('div');
-            el.className = `slot ${s.type}`;
-            if (i === 0) el.classList.add('current');
-            if (s.inverted) el.classList.add('inverted');
+            const el = document.createElement('div'); el.className = `slot ${s.type}`;
+            if (i === 0) el.classList.add('current'); if (s.inverted) el.classList.add('inverted');
             el.innerText = i + 1; el.onclick = () => cycleSlot(i);
-            
             const pt = document.createElement('div'); pt.className = 'slot-prob';
             if (s.type === 'live') { pt.innerText = '100%'; pt.style.color = 'var(--accent-red)'; }
             else if (s.type === 'blank') { pt.innerText = '100%'; pt.style.color = 'var(--accent-green)'; }
             else { pt.innerHTML = `<span style="color:var(--accent-red)">${pLiveBase.toFixed(0)}%</span><br><span style="color:var(--accent-green)">${pBlankBase.toFixed(0)}%</span>`; }
-
             w.appendChild(el); w.appendChild(pt); visual.appendChild(w);
         });
 
@@ -547,9 +466,7 @@
         document.getElementById('prob-live').innerText = pLive.toFixed(0) + '%';
         document.getElementById('prob-blank').innerText = pBlank.toFixed(0) + '%';
 
-        // --- NEW EV ADVICE LOGIC ---
         const adv = document.getElementById('advice-text');
-        
         if (totalLivesLeft === 0 || magazine[0].type === 'blank' || pBlank === 100) {
             adv.style.color = 'var(--accent-green)'; 
             adv.innerHTML = 'Schieß auf dich selbst<br><span style="font-size: 0.75rem; color: var(--text-muted);">Gratiszug gesichert</span>';
@@ -557,12 +474,9 @@
             adv.style.color = 'var(--accent-red)'; 
             adv.innerHTML = 'Schieß auf den Dealer!<br><span style="font-size: 0.75rem; color: var(--text-muted);">Garantierter Treffer</span>';
         } else {
-            const evLiveChance = uLives / totalU;
-            const evDudChance = uBlanks / totalU;
-            
+            const evLiveChance = uLives / totalU; const evDudChance = uBlanks / totalU;
             const evDealer = evLiveChance * (1 - getEV(uLives - 1, uBlanks)) + evDudChance * (-getEV(uLives, uBlanks - 1));
             const evSelf = evLiveChance * (-1 - getEV(uLives - 1, uBlanks)) + evDudChance * getEV(uLives, uBlanks - 1);
-
             if (evDealer > evSelf) {
                 adv.style.color = 'var(--accent-red)'; 
                 adv.innerHTML = `Schieß auf den Dealer!<br><span style="font-size: 0.75rem; color: var(--text-muted);">EV: Dealer (${evDealer.toFixed(2)}) > Du (${evSelf.toFixed(2)})</span>`;
@@ -574,72 +488,66 @@
                 adv.innerHTML = `Egal (50/50)<br><span style="font-size: 0.75rem; color: var(--text-muted);">Erwartungswert ist für beide gleich (${evSelf.toFixed(2)})</span>`;
             }
         }
-        // ---------------------------
 
         let html = "";
         
-        // LUPE / HANDY LOGIC
-        if (totalLivesLeft === 0 || totalBlanksLeft === 0) {
-            html += "<p>🔍/📱 <b>Lupe/Handy:</b> Nutzlos (alles bekannt).</p>";
-        } else {
-            if (magazine[0].type !== 'unknown') html += "<p>🔍 <b>Lupe:</b> Slot 1 ist bekannt.</p>";
-            else if (pLive === 50) html += "<p>🔍 <b>Lupe:</b> DRINGEND NUTZEN! Münzwurf auflösen.</p>";
-            else if (pHealth <= 2 || pHealth < dHealth) html += "<p>🔍 <b>Lupe:</b> WICHTIG! Keine Risiken eingehen.</p>";
-            else html += "<p>🔍 <b>Lupe:</b> Gut zur Absicherung.</p>";
-            
-            if (magazine.length > 1) html += "<p>📱 <b>Handy:</b> Perfekt für spätere Slots (2-8).</p>";
-            else html += "<p>📱 <b>Handy:</b> Nutzlos (nur noch 1 Patrone).</p>";
-        }
-
-        // ITEMS LOGIC (Messer & Handschellen)
-        if (pLive === 100 || magazine[0].type === 'live') {
-            html += "<p>🔪 <b>Messer:</b> PFLICHT! Doppelter Schaden!</p><p>🔗 <b>Handschellen:</b> PERFEKT! Dealer aussetzen.</p>";
-        } else if (totalLivesLeft === 0 || magazine[0].type === 'blank') {
-            html += "<p>🔪 <b>Messer:</b> Nutzlos.</p><p>🔗 <b>Handschellen:</b> VERSCHWENDUNG! Du kriegst eh Freizug.</p>";
-        } else {
-            if (pLive > 50) {
-                html += "<p>🔪 <b>Messer:</b> Gutes Risiko.</p><p>🔗 <b>Handschellen:</b> Starker Zug. Hohe Trefferchance, und falls Plätzer, behältst du die Waffe.</p>";
-            } else if (pLive === 50) {
-                if (magazine.length === 2) {
-                    html += "<p>🔪 <b>Messer:</b> Aufheben.</p><p>🔗 <b>Handschellen:</b> RISIKO = 0! Freischuss auf ihn. Wenn es der Plätzer ist, gehört die 100% Scharfe danach dir!</p>";
-                } else {
-                    html += "<p>🔪 <b>Messer:</b> Aufheben.</p><p>🔗 <b>Handschellen:</b> Solide für den Münzwurf. Du sicherst dir die Kettenkontrolle, falls es ein Plätzer ist.</p>";
-                }
-            } else {
-                html += "<p>🔪 <b>Messer:</b> Aufheben.</p><p>🔗 <b>Handschellen:</b> Aufheben. Schieß bei hoher Plätzer-Chance lieber auf dich selbst.</p>";
-            }
-        }
-
-        // ITEMS LOGIC (Bier & Inverter)
-        if (pLive === 100 || magazine[0].type === 'live') {
-            if (totalLivesLeft > 1 && totalBlanksLeft === 0) html += "<p>🍺 <b>Bier:</b> PRO-MOVE! Wegpumpen, Zug behalten.</p>";
-            else html += "<p>🍺 <b>Bier:</b> NICHT NUTZEN! Wirft Scharfe weg.</p>";
-            html += "<p>🔄 <b>Inverter:</b> BLOß NICHT!</p>";
-        } else if (totalLivesLeft === 0 || magazine[0].type === 'blank') {
-            html += "<p>🍺 <b>Bier:</b> VERSCHWENDUNG!</p><p>🔄 <b>Inverter:</b> PERFEKT! Auf Dealer feuern.</p>";
-        } else if (pLive > 60) {
-            html += "<p>🍺 <b>Bier:</b> Schlecht. Wirft Scharfe weg.</p><p>🔄 <b>Inverter:</b> Schlechte Idee.</p>";
-        } else if (pBlank > 60) {
-            html += "<p>🍺 <b>Bier:</b> Verschwendung! Schieß auf dich selbst.</p><p>🔄 <b>Inverter:</b> Sehr gut!</p>";
-        } else {
-            html += "<p>🍺 <b>Bier:</b> PERFEKTER EINSATZ! Münzwurf umgehen.</p><p>🔄 <b>Inverter:</b> Blind sinnlos.</p>";
-        }
-
-        // HEALTH LOGIC
-        if (pHealth === maxHealth) html += "<p>🚬/💊 <b>Heilung:</b> Nutzlos (voll).</p>";
+        let stealTarget = "";
+        const stealable = dealerItems.filter(i => i !== 'tabletten');
+        if (stealable.length === 0) stealTarget = "Nutzlos (Dealer hat keine sinnvollen Items)";
         else {
-            html += "<p>🚬 <b>Zigaretten:</b> SOFORT NUTZEN!</p>";
-            if (pHealth === 1) html += "<p>💊 <b>Tabletten:</b> NUR IM NOTFALL (-1 killt dich).</p>";
-            else if (maxHealth - pHealth >= 2) html += "<p>💊 <b>Tabletten:</b> Guter Einsatz!</p>";
-            else html += "<p>💊 <b>Tabletten:</b> Hohes Risiko für +1 Leben.</p>";
+            let prio = [];
+            if (magazine.length === 1) {
+                if (pLive === 100 || magazine[0].type === 'live') prio = ['messer', 'zigaretten'];
+                else if (pBlank === 100 || magazine[0].type === 'blank') prio = ['inverter', 'zigaretten'];
+                else prio = ['lupe', 'messer', 'zigaretten'];
+            } else {
+                prio = pHealth <= 2 ? ['messer','lupe','inverter','handschellen','handy','bier','zigaretten'] : ['lupe','messer','handschellen','inverter','handy','bier','zigaretten'];
+                if (unknowns === 0) prio = prio.filter(i => i !== 'lupe');
+            }
+            const target = prio.find(i => stealable.includes(i));
+            stealTarget = target ? `PFLICHT! Klaue ${itemIcons[target]} ${deNames[target]}` : `Klaue ${itemIcons[stealable[0]]} ${deNames[stealable[0]]}`;
         }
+        html += `<p ${pClass('adrenalin')}>💉 <b>Adrenalin:</b> ${stealTarget}</p>`;
+
+        let lupeT = "";
+        if (totalLivesLeft === 0 || totalBlanksLeft === 0) lupeT = "Nutzlos (alles bekannt)";
+        else if (magazine[0].type !== 'unknown') lupeT = "Slot 1 ist bekannt";
+        else if (pLive === 50) lupeT = "DRINGEND NUTZEN! Münzwurf auflösen";
+        else if (pHealth <= 2 || pHealth < dHealth) lupeT = "WICHTIG! Keine Risiken eingehen";
+        else lupeT = "Gut zur Absicherung";
+        html += `<p ${pClass('lupe')}>🔍 <b>Lupe:</b> ${lupeT}</p>`;
+
+        let handyT = (unknowns === 0 || totalLivesLeft === 0 || totalBlanksLeft === 0) ? "Alle Slots bekannt" : (magazine.length > 1 ? `Perfekt für spätere Slots (2-${magazine.length})` : "Nutzlos (nur noch 1 Patrone)");
+        html += `<p ${pClass('handy')}>📱 <b>Handy:</b> ${handyT}</p>`;
+
+        let messerT = (pLive === 100 || magazine[0].type === 'live') ? "PFLICHT! Doppelter Schaden!" : ((totalLivesLeft === 0 || magazine[0].type === 'blank') ? "Nutzlos" : (pLive > 50 ? "Gutes Risiko" : "Aufheben"));
+        html += `<p ${pClass('messer')}>🔪 <b>Messer:</b> ${messerT}</p>`;
+
+        let cuffsT = "";
+        if (magazine.length === 1) cuffsT = "Nutzlos! (Wirkt nicht in der nächsten Runde)";
+        else cuffsT = (pLive === 100 || magazine[0].type === 'live') ? "PERFEKT! Dealer aussetzen" : ((totalLivesLeft === 0 || magazine[0].type === 'blank') ? "VERSCHWENDUNG! Du kriegst eh Freizug" : (pLive > 50 ? "Starker Zug. Hohe Trefferchance." : (pLive === 50 && magazine.length === 2 ? "RISIKO = 0! Freischuss auf ihn." : "Aufheben")));
+        html += `<p ${pClass('handschellen')}>🔗 <b>Handschellen:</b> ${cuffsT}</p>`;
+
+        let bierT = "";
+        if (magazine.length === 1) bierT = "Nutzlos! (Nur noch 1 Patrone)";
+        else bierT = (pLive === 100 || magazine[0].type === 'live') ? ((totalLivesLeft > 1 && totalBlanksLeft === 0) ? "PRO-MOVE! Wegpumpen, Zug behalten" : "NICHT NUTZEN! Wirft Scharfe weg") : ((totalLivesLeft === 0 || magazine[0].type === 'blank') ? "VERSCHWENDUNG!" : (pLive > 60 ? "Schlecht. Wirft Scharfe weg." : (pBlank > 60 ? "Verschwendung! Schieß auf dich selbst." : "PERFEKTER EINSATZ! Münzwurf umgehen")));
+        html += `<p ${pClass('bier')}>🍺 <b>Bier:</b> ${bierT}</p>`;
+
+        let invT = (pLive === 100 || magazine[0].type === 'live') ? "BLOß NICHT!" : ((totalLivesLeft === 0 || magazine[0].type === 'blank') ? "PERFEKT! Auf Dealer feuern" : (pLive > 60 ? "Schlechte Idee" : (pBlank > 60 ? "Sehr gut!" : "Blind sinnlos")));
+        html += `<p ${pClass('inverter')}>🔄 <b>Inverter:</b> ${invT}</p>`;
+
+        let zigT = (pHealth === maxHealth) ? "Nutzlos (voll)" : "SOFORT NUTZEN!";
+        html += `<p ${pClass('zigaretten')}>🚬 <b>Zigaretten:</b> ${zigT}</p>`;
+
+        let tabT = (pHealth === maxHealth) ? "Nutzlos (voll)" : (pHealth === 1 ? "NUR IM NOTFALL (-1 killt dich)" : ((maxHealth - pHealth >= 2) ? "Guter Einsatz!" : "Hohes Risiko für +1 Leben"));
+        html += `<p ${pClass('tabletten')}>💊 <b>Tabletten:</b> ${tabT}</p>`;
         
         document.getElementById('item-advice-text').innerHTML = html;
+        checkEvents();
     }
 
     function removeShell(type) {
-        if (magazine.length === 0) return;
-        saveState();
+        if (magazine.length === 0) return; saveState();
         if (type === 'live') { totalLivesLeft = Math.max(0, totalLivesLeft - 1); globalTotalLives++; }
         if (type === 'blank') { totalBlanksLeft = Math.max(0, totalBlanksLeft - 1); globalTotalBlanks++; }
         magazine.shift(); document.getElementById('item-info').innerText = `War ${type === 'live' ? 'SCHARF' : 'PLÄTZER'}.`;
@@ -647,8 +555,7 @@
     }
 
     function useInverter() {
-        if (magazine.length === 0) return;
-        const s = magazine[0];
+        if (magazine.length === 0) return; const s = magazine[0];
         if (s.type === 'unknown') return alert("💡 Erst Slot 1 anklicken (Scharf/Plätzer), dann invertieren!");
         saveState();
         if (s.type === 'live') { s.type = 'blank'; totalLivesLeft = Math.max(0, totalLivesLeft-1); totalBlanksLeft++; }
@@ -662,7 +569,9 @@
             const l = historyStack.pop();
             magazine = l.magazine; pHealth = l.pH; dHealth = l.dH;
             totalLivesLeft = l.tl; totalBlanksLeft = l.tb; globalTotalLives = l.gl; globalTotalBlanks = l.gb;
-            updateHealthUI(); updateLLN(); document.getElementById('item-info').innerText = '↩️ Rückgängig.'; updateUI();
+            playerItems = l.pItems; dealerItems = l.dItems; 
+            updateHealthUI(); updateLLN(); renderInventory(); 
+            document.getElementById('item-info').innerText = '↩️ Rückgängig.'; updateUI();
         }
     }
     function nextRound() { document.getElementById('setup-section').classList.remove('hidden'); document.getElementById('game-section').classList.add('hidden'); historyStack = []; }

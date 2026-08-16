@@ -51,45 +51,83 @@
             letter-spacing: 1px;
         }
 
-        .section { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #2c2c2c; }
+        .section {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #2c2c2c;
+        }
         .section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
         label { display: block; margin-bottom: 8px; font-weight: bold; font-size: 0.9rem; }
+
         .input-group { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
         .input-box { flex: 1 1 30%; min-width: 100px; }
 
         input[type="number"] {
-            width: 100%; box-sizing: border-box; padding: 10px; background-color: #2b2b2b;
-            border: 1px solid #444; color: white; border-radius: 6px; font-size: 1rem;
+            width: 100%; box-sizing: border-box; padding: 10px;
+            background-color: #2b2b2b; border: 1px solid #444;
+            color: white; border-radius: 6px; font-size: 1rem;
             text-align: center; font-weight: bold;
         }
 
         button {
             background-color: #333; color: white; border: none; padding: 10px 15px;
-            border-radius: 6px; cursor: pointer; font-weight: bold; transition: background 0.2s; touch-action: manipulation;
+            border-radius: 6px; cursor: pointer; font-weight: bold;
+            transition: background 0.2s; touch-action: manipulation;
         }
         button:hover { background-color: #444; }
 
-        button.primary { background-color: #bb86fc; color: #000; width: 100%; margin-top: 5px; font-size: 1.05rem; padding: 12px; }
+        button.primary {
+            background-color: #bb86fc; color: #000; width: 100%; margin-top: 5px;
+            font-size: 1.05rem; padding: 12px;
+        }
         button.primary:hover { background-color: #9965f4; }
-        .btn-hard-reset { background-color: #b71c1c; border: 1px solid #c62828; color: white; width: 100%; margin-top: 10px; padding: 10px; font-size: 0.9rem; }
 
-        .health-interactive-container { display: flex; justify-content: space-between; align-items: center; background-color: #252525; border: 2px solid #444; border-radius: 8px; padding: 10px 15px; margin-bottom: 10px; }
+        .btn-hard-reset {
+            background-color: #b71c1c; border: 1px solid #c62828; color: white;
+            width: 100%; margin-top: 10px; padding: 10px; font-size: 0.9rem;
+        }
+
+        .health-interactive-container {
+            display: flex; justify-content: space-between; align-items: center;
+            background-color: #252525; border: 2px solid #444; border-radius: 8px;
+            padding: 10px 15px; margin-bottom: 10px;
+        }
+
         .health-side { display: flex; align-items: center; gap: 10px; }
         .health-side.dealer { flex-direction: row-reverse; }
         .health-label { font-size: 0.8rem; color: var(--text-muted); font-weight: bold; }
         .health-bolts { display: flex; flex-wrap: wrap; gap: 4px; }
-
-        .bolt { font-size: 1.3rem; cursor: pointer; opacity: 0.2; filter: grayscale(100%); transition: 0.1s; user-select: none; }
+        
+        .bolt {
+            font-size: 1.3rem; cursor: pointer; opacity: 0.2; filter: grayscale(100%);
+            transition: 0.1s; user-select: none;
+        }
         .bolt.active { opacity: 1; filter: drop-shadow(0 0 5px var(--accent-yellow)); }
 
-        .inventory-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; margin-bottom: 15px; }
-        .inv-box { background-color: #252525; border: 2px solid #444; border-radius: 8px; padding: 10px; display: flex; flex-direction: column; align-items: center; }
+        .inventory-container {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; margin-bottom: 15px;
+        }
+        .inv-box {
+            background-color: #252525; border: 2px solid #444; border-radius: 8px;
+            padding: 10px; display: flex; flex-direction: column; align-items: center;
+        }
         .inv-title { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px; }
         .inv-slots { display: grid; grid-template-columns: repeat(4, 32px); gap: 4px; justify-content: center; min-height: 32px; margin-bottom: 8px; }
-        .inv-item { width: 32px; height: 32px; background-color: #333; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; border: 1px solid #555; }
-        .inv-select { width: 100%; padding: 5px; background-color: #1e1e1e; color: white; border: 1px solid #444; border-radius: 4px; font-size: 0.85rem; }
+        .inv-item {
+            width: 32px; height: 32px; background-color: #333; border-radius: 4px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+            cursor: pointer; border: 1px solid #555;
+        }
+        .inv-select {
+            width: 100%; padding: 5px; background-color: #1e1e1e; color: white;
+            border: 1px solid #444; border-radius: 4px; font-size: 0.85rem;
+        }
 
-        .lln-box { background-color: #1a1a1a; border: 1px dashed #555; border-radius: 6px; padding: 10px; text-align: center; font-size: 0.85rem; color: var(--text-muted); margin: 10px 0; }
+        .lln-box {
+            background-color: #1a1a1a; border: 1px dashed #555; border-radius: 6px;
+            padding: 10px; text-align: center; font-size: 0.85rem; color: var(--text-muted); margin: 10px 0;
+        }
 
         .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: center; margin: 15px 0; }
         .stat-box { background-color: #252525; padding: 12px; border-radius: 8px; border: 1px solid #333; font-size: 0.9rem; }
@@ -102,8 +140,20 @@
         .advice-box { background-color: #26222b; border: 2px dashed #bb86fc; border-radius: 8px; padding: 12px; text-align: center; margin: 15px 0; }
         .advice-text { font-size: 1.1rem; font-weight: bold; }
 
-        .achievement-box { background-color: #107C10; color: white; border: 2px solid #5dc21e; border-radius: 8px; padding: 10px; text-align: center; font-weight: bold; font-size: 0.9rem; margin: 10px 0 0 0; text-shadow: 0px 0px 4px rgba(0,0,0,0.8); animation: pulse-green 1.5s infinite; }
-        .death-warning-box { background-color: #b71c1c; color: white; border: 2px solid #f44336; border-radius: 8px; padding: 10px; text-align: center; font-weight: bold; font-size: 0.9rem; margin: 10px 0 0 0; text-shadow: 0px 0px 4px rgba(0,0,0,0.8); animation: pulse-red 1s infinite; }
+        .achievement-box {
+            background-color: #107C10; color: white; border: 2px solid #5dc21e;
+            border-radius: 8px; padding: 10px; text-align: center; font-weight: bold;
+            font-size: 0.9rem; margin: 10px 0 0 0; text-shadow: 0px 0px 4px rgba(0,0,0,0.8);
+            animation: pulse-green 1.5s infinite;
+        }
+        
+        .death-warning-box {
+            background-color: #b71c1c; color: white; border: 2px solid #f44336;
+            border-radius: 8px; padding: 10px; text-align: center; font-weight: bold;
+            font-size: 0.9rem; margin: 10px 0 0 0; text-shadow: 0px 0px 4px rgba(0,0,0,0.8);
+            animation: pulse-red 1s infinite;
+        }
+
         @keyframes pulse-green { 0% { box-shadow: 0 0 10px #107C10; } 50% { box-shadow: 0 0 25px #5dc21e; } 100% { box-shadow: 0 0 10px #107C10; } }
         @keyframes pulse-red { 0% { box-shadow: 0 0 10px #b71c1c; } 50% { box-shadow: 0 0 25px #ff5252; } 100% { box-shadow: 0 0 10px #b71c1c; } }
 
@@ -115,7 +165,10 @@
 
         .magazine-visual { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; justify-content: center; }
         .slot-wrapper { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-        .slot { width: 35px; height: 35px; border-radius: 50%; background-color: #2b2b2b; border: 2px solid #555; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: bold; cursor: pointer; }
+        .slot {
+            width: 35px; height: 35px; border-radius: 50%; background-color: #2b2b2b; border: 2px solid #555;
+            display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: bold; cursor: pointer;
+        }
         .slot.current { border-color: #ffeb3b; box-shadow: 0 0 8px #ffeb3b; }
         .slot.live { background-color: var(--accent-red); color: white; border-color: #ff8a80; }
         .slot.blank { background-color: var(--accent-green); color: black; border-color: #69f0ae; }
@@ -150,15 +203,15 @@
         <div class="input-group">
             <div class="input-box">
                 <span style="font-size: 0.8rem; color: var(--accent-red);">Scharf:</span>
-                <input type="number" id="input-live" min="1" max="4" value="2">
+                <input type="number" id="input-live" value="2">
             </div>
             <div class="input-box">
                 <span style="font-size: 0.8rem; color: var(--accent-green);">Plätzer:</span>
-                <input type="number" id="input-blank" min="1" max="4" value="2">
+                <input type="number" id="input-blank" value="2">
             </div>
             <div class="input-box">
                 <span style="font-size: 0.8rem; color: var(--accent-yellow);">Blitze:</span>
-                <input type="number" id="input-health" min="2" max="4" value="4">
+                <input type="number" id="input-health" value="4">
             </div>
         </div>
         <button class="primary" onclick="initRound()">Runde starten</button>
